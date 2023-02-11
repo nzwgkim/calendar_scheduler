@@ -1,3 +1,4 @@
+import 'package:calenar_scheduler/components/calendar.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -13,6 +14,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Calendar',
       theme: ThemeData(
+        fontFamily: 'NotoSans',
         primarySwatch: Colors.blue,
       ),
       home: const MyHomePage(),
@@ -27,9 +29,8 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return const Scaffold(
       body: Center(
-        child: Text(
-          'Calendar',
-          style: TextStyle(fontSize: 30),
+        child: SafeArea(
+          child: Calendar(),
         ),
       ),
     );
