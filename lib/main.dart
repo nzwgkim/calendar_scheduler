@@ -1,7 +1,12 @@
 import 'package:calenar_scheduler/components/calendar.dart';
+import 'package:calenar_scheduler/components/today_banner.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  // intl 초기화
+  await initializeDateFormatting();
   runApp(const MyApp());
 }
 
@@ -17,22 +22,49 @@ class MyApp extends StatelessWidget {
         fontFamily: 'NotoSans',
         primarySwatch: Colors.blue,
       ),
-      home: const MyHomePage(),
+      home: const HomeScreen(),
     );
   }
 }
 
-class MyHomePage extends StatelessWidget {
-  const MyHomePage({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  DateTime selectedDay =
+      DateTime(DateTime.now().year, DateTime.now().month, DateTime.now().day);
+  DateTime focusedDay = DateTime.now();
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
+    print('HomeScreen 1) sel: ${selectedDay}');
+    return Scaffold(
       body: Center(
         child: SafeArea(
-          child: Calendar(),
+          child: Column(
+            children: [
+              Calendar(
+                  selectedDay: selectedDay,
+                  focusedDay: focusedDay,
+                  onDaySelected: onDaySelected),
+              TodayBanner(scheduledCount: 5, selectedDay: selectedDay),
+            ],
+          ),
         ),
       ),
     );
+  }
+
+  onDaySelected(selectedDay, focusedDay) {
+    setState(() {
+      this.selectedDay = selectedDay;
+      this.focusedDay = selectedDay;
+
+      print('HomeScreen 2) sel: ${this.selectedDay}');
+    });
   }
 }
