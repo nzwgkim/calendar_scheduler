@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
   final String label;
+  final TextInputType textInputType;
 
-  const CustomTextField({required this.label, super.key});
+  const CustomTextField(
+      {required this.label, required this.textInputType, super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -17,6 +19,7 @@ class CustomTextField extends StatelessWidget {
               color: PRIMARY_COLOR, fontWeight: FontWeight.w600),
         ),
         TextField(
+          keyboardType: TextInputType.number,
           cursorColor: Colors.grey,
           decoration: InputDecoration(
               border: InputBorder.none,

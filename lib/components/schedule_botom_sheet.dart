@@ -15,48 +15,62 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
     // FloatingActionButton에서 사용된, showModalBottomSheet는 최대크기가 화면의 1/2이다.
     //
     final bottomInset = MediaQuery.of(context).viewInsets.bottom;
-    return SizedBox(
-      height: MediaQuery.of(context).size.height / 2 + bottomInset,
-      child: Padding(
-        padding: const EdgeInsets.all(8.0),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Row(
-              children: const [
-                Expanded(child: CustomTextField(label: 'Start')),
-                SizedBox(
-                  width: 8,
-                ),
-                Expanded(child: CustomTextField(label: 'End')),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const Expanded(child: CustomTextField(label: 'Contents')),
-            const SizedBox(
-              height: 5,
-            ),
-            // Row는 item이 많아지면, 대응하기 어렵다.--> Wrap
-            Wrap(
-              spacing: 8,
-              runAlignment: WrapAlignment.spaceEvenly,
-              children: [
-                categoryColor(Colors.red),
-                categoryColor(Colors.orange),
-                categoryColor(Colors.yellow),
-                categoryColor(Colors.green),
-                categoryColor(Colors.blue),
-                categoryColor(Colors.indigo),
-                categoryColor(Colors.purple),
-              ],
-            ),
-            const SizedBox(
-              height: 5,
-            ),
-            const _SaveButton(),
-          ],
+    return GestureDetector(
+      // textfield에 입력된 내용을 유지하면서, system keyboard를 사라지게 하려면
+      // GestureDetector의 FocusScope.of(context).requestFocus(FocusNode())가 필요하다.
+      onTap: () {
+        FocusScope.of(context).requestFocus(FocusNode());
+      },
+      child: SizedBox(
+        height: MediaQuery.of(context).size.height / 2 + bottomInset,
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Row(
+                children: const [
+                  Expanded(
+                      child: CustomTextField(
+                          label: 'Start', textInputType: TextInputType.number)),
+                  SizedBox(
+                    width: 8,
+                  ),
+                  Expanded(
+                      child: CustomTextField(
+                          label: 'End', textInputType: TextInputType.number)),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const Expanded(
+                  child: CustomTextField(
+                      label: 'Contents',
+                      textInputType: TextInputType.multiline)),
+              const SizedBox(
+                height: 5,
+              ),
+              // Row는 item이 많아지면, 대응하기 어렵다.--> Wrap
+              Wrap(
+                spacing: 8,
+                runAlignment: WrapAlignment.spaceEvenly,
+                children: [
+                  categoryColor(Colors.red),
+                  categoryColor(Colors.orange),
+                  categoryColor(Colors.yellow),
+                  categoryColor(Colors.green),
+                  categoryColor(Colors.blue),
+                  categoryColor(Colors.indigo),
+                  categoryColor(Colors.purple),
+                ],
+              ),
+              const SizedBox(
+                height: 5,
+              ),
+              const _SaveButton(),
+            ],
+          ),
         ),
       ),
     );
