@@ -1,4 +1,5 @@
 import 'package:calenar_scheduler/components/calendar.dart';
+import 'package:calenar_scheduler/components/schedule_botom_sheet.dart';
 import 'package:calenar_scheduler/components/schedule_card.dart';
 import 'package:calenar_scheduler/components/today_banner.dart';
 import 'package:calenar_scheduler/const/colors.dart';
@@ -68,19 +69,13 @@ class _HomeScreenState extends State<HomeScreen> {
     return FloatingActionButton(
         backgroundColor: PRIMARY_COLOR,
         onPressed: () {
+// showModalBottomSheet는 기본적으로 최대크기가 화면의 1/2이다.
+// isScrollControlled를 true로 하면, 더 크게 할 수 있다.
+// 즉, keyboard의 size를 고려한 bottomsheet를 구현할 수 있다.
           showModalBottomSheet(
+            isScrollControlled: true,
             context: context,
-            builder: (context) => SizedBox(
-              // color: Colors.white,
-              height: 300,
-              child: Column(
-                children: [
-                  Row(
-                    children: const [],
-                  ),
-                ],
-              ),
-            ),
+            builder: (context) => const ScheduleBottomSheet(),
           );
         },
         child: const Icon(Icons.add));
