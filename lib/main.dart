@@ -3,6 +3,7 @@ import 'package:calenar_scheduler/components/schedule_bottom_sheet.dart';
 import 'package:calenar_scheduler/components/schedule_card.dart';
 import 'package:calenar_scheduler/components/today_banner.dart';
 import 'package:calenar_scheduler/const/colors.dart';
+import 'package:calenar_scheduler/database/drift_database.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
 
@@ -10,6 +11,11 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   // intl 초기화
   await initializeDateFormatting();
+
+  final database = LocalDatabase();
+  print('--------------');
+  print(await database.getCategoryColors());
+
   runApp(const MyApp());
 }
 

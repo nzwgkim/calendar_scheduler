@@ -43,31 +43,31 @@ class LocalDatabase extends _$LocalDatabase {
   Future<int> removeSchedule(int id) =>
       (delete(schedules)..where((tbl) => tbl.id.equals(id))).go();
 
-  Stream<List<ScheduleWithColor>> watchSchedules(DateTime date) {
-    final query = select(schedules).join([
-      innerJoin(categoryColors, categoryColors.id.equalsExp(schedules.colorId))
-    ]);
+  // Stream<List<ScheduleWithColor>> watchSchedules(DateTime date) {
+  //   final query = select(schedules).join([
+  //     innerJoin(categoryColors, categoryColors.id.equalsExp(schedules.colorId))
+  //   ]);
 
-    query.where(schedules.date.equals(date));
-    query.orderBy(
-      [
-        // asc -> ascending 오름차순
-        // desc -> descending 내림차순
-        OrderingTerm.asc(schedules.startTime),
-      ],
-    );
+  //   query.where(schedules.date.equals(date));
+  //   query.orderBy(
+  //     [
+  //       // asc -> ascending 오름차순
+  //       // desc -> descending 내림차순
+  //       OrderingTerm.asc(schedules.startTime),
+  //     ],
+  //   );
 
-    return query.watch().map(
-          (rows) => rows
-              .map(
-                (row) => ScheduleWithColor(
-                  schedule: row.readTable(schedules),
-                  categoryColor: row.readTable(categoryColors),
-                ),
-              )
-              .toList(),
-        );
-  }
+  //   return query.watch().map(
+  //         (rows) => rows
+  //             .map(
+  //               (row) => ScheduleWithColor(
+  //                 schedule: row.readTable(schedules),
+  //                 categoryColor: row.readTable(categoryColors),
+  //               ),
+  //             )
+  //             .toList(),
+  //       );
+  // }
 
   @override
   int get schemaVersion => 1;
