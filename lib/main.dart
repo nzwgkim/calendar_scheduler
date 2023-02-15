@@ -1,5 +1,5 @@
 import 'package:calenar_scheduler/components/calendar.dart';
-import 'package:calenar_scheduler/components/schedule_botom_sheet.dart';
+import 'package:calenar_scheduler/components/schedule_bottom_sheet.dart';
 import 'package:calenar_scheduler/components/schedule_card.dart';
 import 'package:calenar_scheduler/components/today_banner.dart';
 import 'package:calenar_scheduler/const/colors.dart';

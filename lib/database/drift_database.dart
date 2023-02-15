@@ -18,8 +18,12 @@ part 'drift_database.g.dart';
     CategoryColors,
   ],
 )
+
+// naming rule: class (name) extends _$(name)
 class LocalDatabase extends _$LocalDatabase {
   LocalDatabase() : super(_openConnection());
+  @override
+  int get schemaVersion => 1;
 }
 
 LazyDatabase _openConnection() {
