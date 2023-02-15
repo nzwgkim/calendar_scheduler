@@ -31,23 +31,19 @@ class _ScheduleBottomSheetState extends State<ScheduleBottomSheet> {
               Row(
                 children: const [
                   Expanded(
-                      child: CustomTextField(
-                          label: 'Start', textInputType: TextInputType.number)),
+                      child: CustomTextField(label: 'Start', isNumber: true)),
                   SizedBox(
                     width: 8,
                   ),
                   Expanded(
-                      child: CustomTextField(
-                          label: 'End', textInputType: TextInputType.number)),
+                      child: CustomTextField(label: 'End', isNumber: true)),
                 ],
               ),
               const SizedBox(
                 height: 5,
               ),
               const Expanded(
-                  child: CustomTextField(
-                      label: 'Contents',
-                      textInputType: TextInputType.multiline)),
+                  child: CustomTextField(label: 'Contents', isNumber: false)),
               const SizedBox(
                 height: 5,
               ),
