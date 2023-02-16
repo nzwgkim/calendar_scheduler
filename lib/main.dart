@@ -4,8 +4,26 @@ import 'package:calenar_scheduler/components/schedule_card.dart';
 import 'package:calenar_scheduler/components/today_banner.dart';
 import 'package:calenar_scheduler/const/colors.dart';
 import 'package:calenar_scheduler/database/drift_database.dart';
+import 'package:drift/drift.dart' hide Column;
 import 'package:flutter/material.dart';
 import 'package:intl/date_symbol_data_local.dart';
+
+const DEFAULT_COLORS = [
+  // 빨강
+  'F44336',
+  // 주황
+  'FF9800',
+  // 노랑
+  'FFEB3B',
+  // 초록
+  'FCAF50',
+  // 파랑
+  '2196F3',
+  // 남
+  '3F51B5',
+  // 보라
+  '9C27B0',
+];
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,9 +31,18 @@ void main() async {
   await initializeDateFormatting();
 
   final database = LocalDatabase();
-  print('--------------');
-  print(await database.getCategoryColors());
-
+  print('------------------');
+  final data = await database.getCategoryColors();
+  if (data.isEmpty) {
+    for (var hex in DEFAULT_COLORS) {
+      await database
+          .createCategoryColor(CategoryColorsCompanion(textCode: Value(hex)));
+    }
+  }
+  print('FROM ==================');
+  final readColor = await database.getCategoryColors();
+  print(readColor);
+  print('TO ==================');
   runApp(const MyApp());
 }
 
@@ -50,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    print('HomeScreen 1) sel: $selectedDay');
+    // print('HomeScreen 1) sel: $selectedDay');
     int count = 5;
     return Scaffold(
       floatingActionButton: floatingButton(),

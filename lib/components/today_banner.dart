@@ -9,7 +9,7 @@ class TodayBanner extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('TodayBanner) sel: $selectedDay');
+    // print('TodayBanner) sel: $selectedDay');
     const textStyle = TextStyle(
         color: Colors.white, fontSize: 16, fontWeight: FontWeight.w600);
     return Container(

@@ -33,7 +33,7 @@ class Calendar extends StatelessWidget {
       ),
       onDaySelected: onDaySelected,
       selectedDayPredicate: (day) {
-        print('Pred: $day');
+        // print('Pred: $day');
         return isSameDay(selectedDay, day);
       },
       calendarStyle: CalendarStyle(
