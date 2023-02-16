@@ -31,7 +31,7 @@ void main() async {
   await initializeDateFormatting();
 
   final database = LocalDatabase();
-  print('------------------');
+  // print('------------------');
   final data = await database.getCategoryColors();
   if (data.isEmpty) {
     for (var hex in DEFAULT_COLORS) {
@@ -39,10 +39,10 @@ void main() async {
           .createCategoryColor(CategoryColorsCompanion(textCode: Value(hex)));
     }
   }
-  print('FROM ==================');
-  final readColor = await database.getCategoryColors();
-  print(readColor);
-  print('TO ==================');
+  // print('FROM ==================');
+  // final readColor = await database.getCategoryColors();
+  // print(readColor);
+  // print('TO ==================');
   runApp(const MyApp());
 }
 
@@ -77,7 +77,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   Widget build(BuildContext context) {
-    // print('HomeScreen 1) sel: $selectedDay');
+    print('HomeScreen 1) sel: $selectedDay');
     int count = 5;
     return Scaffold(
       floatingActionButton: floatingButton(),
